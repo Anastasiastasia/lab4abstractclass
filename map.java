@@ -5,8 +5,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import java.util.zip.*;
-
-//********** Напитки **********
 class Drinks extends Menu {
     
     public Drinks() {
@@ -20,8 +18,6 @@ class Drinks extends Menu {
         this.weight = weight;
         this.price = price;
     }
-
-    //********** Метод считывания из файла **********
     public Map<Integer, Drinks> meals = new HashMap<>();
     Scanner scanner = new Scanner(System.in);
     public Map<Integer, Drinks> readMealsFromFile(String filename) {
@@ -56,13 +52,10 @@ class Drinks extends Menu {
         }
         return meals;
     }
-
-    //********** Метод toString() преобразования числа в строку **********
     public String toString() {
         return "Drink {" +  "name= " + getName() + ' ' + ", weight= " + getWeight() +' ' + ", price= " + getPrice() + '}';
     }
     
-    //********** Метод displayMealItems вывода элементов листа на консоль **********
     public void displayMealItems(Map<Integer, Drinks> meal) {
         //for (Map.Entry<Integer, Drinks> entry : meal.entrySet()) {
          //   System.out.println(entry.getValue().toString());
@@ -73,8 +66,6 @@ class Drinks extends Menu {
             System.out.println(entry.getValue().toString());
         }
     }
-
-    //********** Метод addElement для добавления напитка в меню **********  
     public void addElement() {
         System.out.println("Введите название");
         String name1 = scanner.nextLine();
@@ -85,16 +76,13 @@ class Drinks extends Menu {
         Drinks meal = new Drinks(name1, weight1, price1);
         meals.put(meals.size(), meal);
     }
-    
-    //********** Метод removeElement для удаления напитка из меню по номеру в списке **********  
+
     public void removeElement() {
         System.out.println("Введите номер объекта");
         int i = scanner.nextInt();
         meals.remove(i-1);
         scanner.close();
     }
-    
-    //********** Метод replaceElement для редактирования(изменения) напитка в меню по номеру в списке **********
     public void replaceElement() {
         System.out.println("Введите номер объекта");
         int i = scanner.nextInt();
@@ -108,8 +96,7 @@ class Drinks extends Menu {
         Drinks updatedMeal = new Drinks(name1, weight1, price1);
         meals.put(i - 1, updatedMeal);
     }
-    
-    //********** Метод maximum для нахождения напитка с максимальной ценой и максимальной массы в меню **********
+
     public void maximum() {
         Drinks maxCostMeal = null;
         Drinks maxWeight = null;
@@ -125,7 +112,6 @@ class Drinks extends Menu {
         System.out.println("Напитки:\n Максимальная цена " + maxCostMeal + "\n Максимальный вес " + maxWeight + "\n");
     }
     
-    //********** Метод saveToFile записи измененного меню в файл.txt **********
     public void saveToFile1(String filename) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             Iterator<Map.Entry<Integer, Drinks>> iterator = meals.entrySet().iterator();
@@ -143,7 +129,6 @@ class Drinks extends Menu {
         }
     }
     
-    //********** Метод sortprice сортировки напитков по цене **********
     public void sortprice() {
         List<Drinks> drinkList = new ArrayList<>(meals.values());
         Collections.sort(drinkList, new Comparator<Drinks>() {
@@ -157,7 +142,7 @@ class Drinks extends Menu {
         drinkList.forEach(n->System.out.println(n.toString()));
     }
 
-    //********** Метод sortWeight сортировки напитков по массе **********
+
     public void sortWeight() {
         List<Drinks> drinkList = new ArrayList<>(meals.values());
         Collections.sort(drinkList, new Comparator<Drinks>() {
@@ -185,19 +170,17 @@ class Drinks extends Menu {
         System.out.println("Отсортированные по алфавиту напитки:");
         drinkList.forEach(n->System.out.println(n.toString()));
     }
-    
-    //********** Метод записи в файл.zip *********
+
     public void toZipDrinks(String filename) {
         try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream("MenuDrinks.zip"));
             FileInputStream fis = new FileInputStream(filename);) {
             ZipEntry entry1 = new ZipEntry(filename);
             zout.putNextEntry(entry1);
-            // считываем содержимое файла в массив byte
+          
             byte[] buffer = new byte[fis.available()];
-            fis.read(buffer);
-            // добавляем содержимое к архиву
+        
             zout.write(buffer);
-            // закрываем текущую запись для новой записи
+  
             zout.closeEntry();
         } 
         catch (Exception ex) {
@@ -205,7 +188,7 @@ class Drinks extends Menu {
         }
     }
 
-    //********** Метод распаковки файла.zip *********
+   
     public void inZipDrinks() {
         try(ZipInputStream zin = new ZipInputStream(new FileInputStream("MenuDrinks.zip")))
         {
@@ -216,7 +199,7 @@ class Drinks extends Menu {
                 name = entry.getName(); // получим название файла
                 System.out.printf("Файл в ZIP-архиве: %s \n", name);
                  
-                // распаковка
+             
                 FileOutputStream fout = new FileOutputStream("new" + name);
                 for (int c = zin.read(); c != -1; c = zin.read()) {
                     fout.write(c);
