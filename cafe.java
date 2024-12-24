@@ -1,11 +1,13 @@
 import java.io.IOException;
 import java.util.*;
+
 public class cafe {
+
     public static void main(String[] args) throws IOException {
         
-        SwithMenu mealdrink = new SwithMenu();                      // создаем объект mealdrink класса SwithMenu
+        SwithMenu mealdrink = new SwithMenu();                     
         
-        Scanner scanner = new Scanner(System.in);                   // создаем сканер
+        Scanner scanner = new Scanner(System.in);                   
         System.out.println("\n========== Кафе ==========");
         
         boolean running = true;
@@ -35,59 +37,64 @@ public class cafe {
             System.out.println("21. Распаковать меню из файл ZIP");
             System.out.println("22. Шифровать данные");
             System.out.println("23. Дешифровать данные");
+            System.out.println("24. Шифровать файл");
+            System.out.println("25. Дешифровать файл");
+
 
             System.out.println("==========================");
             System.out.print(" Введите номер: ");
             
             int choice = scanner.nextInt();
-            
-            // используем лямбда-стрелку для сопоставления case с кодом
             switch(choice) {
-                case 1 -> { mealdrink.readMealsDrinkFile(); }       // Прочитать меню из файла.txt
+                case 1 -> { mealdrink.readMealsDrinkFile(); }       
                     
-                case 2 -> { mealdrink.addMeal(); }                  // Добавить новое блюдо
+                case 2 -> { mealdrink.addMeal(); }                 
                     
-                case 3 -> { mealdrink.removeMeal(); }               // Удалить блюдо
+                case 3 -> { mealdrink.removeMeal(); }             
                     
-                case 4 -> { mealdrink.displayMeal(); }              // Посмотреть текущее состояние меню(блюда)
+                case 4 -> { mealdrink.displayMeal(); }              
                     
-                case 5 -> { mealdrink.addDrink(); }                 // Добавить новый напиток
+                case 5 -> { mealdrink.addDrink(); }             
                     
-                case 6 -> { mealdrink.removeDrink(); }              // Удалить напиток
+                case 6 -> { mealdrink.removeDrink(); }              
                     
-                case 7 -> { mealdrink.displayDrink(); }             // Посмотреть текущее состояние меню(напитки)
+                case 7 -> { mealdrink.displayDrink(); }             
                     
-                case 8 -> { mealdrink.maxMealDrink(); }             // Найти блюдо и напиток с максимальной ценой и максимальной массы
+                case 8 -> { mealdrink.maxMealDrink(); }             
                     
-                case 9 -> { mealdrink.sortpriceMealDrink(); }       // Сортировка блюд и напитков по цене
+                case 9 -> { mealdrink.sortpriceMealDrink(); }       
                     
-                case 10 -> { mealdrink.sortWeightMealDrink(); }     // Сортировка блюд и напитков по весу
+                case 10 -> { mealdrink.sortWeightMealDrink(); }    
                     
-                case 11 -> { mealdrink.sortNameMealDrink(); }       // Сортировка блюд и напитков по алфавиту
+                case 11 -> { mealdrink.sortNameMealDrink(); }      
                     
-                case 12 -> { mealdrink.saveToFileMealDrink(); }     // Записать меню в файл.txt
+                case 12 -> { mealdrink.saveToFileMealDrink(); }    
                     
-                case 13 -> { mealdrink.replaceMeal(); }             // Замена блюда
+                case 13 -> { mealdrink.replaceMeal(); }             
                     
-                case 14 -> { mealdrink.replaceDrink(); }            // Замена напитка
+                case 14 -> { mealdrink.replaceDrink(); }         
                     
-                case 15 -> { running = false; }                     // Закрыть меню
+                case 15 -> { running = false; }
 
-                case 16 -> { mealdrink.readMenuXml1(); }            // Прочитать меню из файла.XML
+                case 16 -> { mealdrink.readMenuXml1(); }           
                      
-                case 17 -> {mealdrink.savetoHMLfile();}             // Записать меню в файл.XML
+                case 17 -> {mealdrink.savetoHMLfile();}            
                      
-                case 18 -> {mealdrink.readFromJsonFile();}          // Прочитать меню из файла.JSON
+                case 18 -> {mealdrink.readFromJsonFile();}         
                      
-                case 19 -> {mealdrink.writetoJsonFile();}           // Записать меню в файл.JSON
+                case 19 -> {mealdrink.writetoJsonFile();}          
                      
-                case 20 -> {mealdrink.Zip();}                       // Записать меню в файл.ZIP
+                case 20 -> {mealdrink.Zip();}                       
 
-                case 21 -> {mealdrink.inoutZip();}                  // Распаковать меню из файл.ZIP
+                case 21 -> {mealdrink.inoutZip();}                  
 
-                case 22 -> {mealdrink.displayMEncrypt();}           // Шифровать данные
+                case 22 -> {mealdrink.displayMEncrypt();}          
 
-                case 23 -> {mealdrink.displayMDecrypt();}           // Дешифровать данные
+                case 23 -> {mealdrink.displayMDecrypt();}         
+
+                case 24 -> {mealdrink.mainCript();}                
+
+                case 25 -> {mealdrink.mainDecCript();}           
                 
                 default -> { System.out.println("Ошибка ввода! Пожалуйста повторите выбор."); }
             }
